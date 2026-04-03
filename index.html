@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Special Invitation – Swarga Seema Housing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --maroon:    #6B1A1A;
+      --maroon-dk: #4A0F0F;
+      --maroon-lt: #8B2525;
+      --cream:     #F5F0E8;
+      --cream-dk:  #EDE6D6;
+      --gold:      #C89B3C;
+      --gold-lt:   #E4BC6A;
+      --green:     #2E5E2E;
+      --text:      #2A1A1A;
+      --muted:     #7A6060;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 16px 60px;
+    }
+
+    /* ── HEADER BANNER ── */
+    .header {
+      width: 100%;
+      max-width: 760px;
+      background: var(--maroon-dk);
+      border-radius: 0 0 24px 24px;
+      padding: 28px 36px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 36px;
+      box-shadow: 0 8px 32px rgba(74,15,15,0.3);
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 0%, rgba(200,155,60,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .logo-icon {
+      width: 52px; height: 52px;
+      background: var(--gold);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      flex-shrink: 0;
+    }
+    .logo-text {
+      text-align: left;
+    }
+    .logo-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+    .logo-text span {
+      font-size: 11px;
+      color: var(--gold-lt);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .invite-label {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 6px;
+    }
+    .invite-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 5vw, 30px);
+      color: #fff;
+      line-height: 1.2;
+    }
+    .invite-subtitle {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--gold-lt);
+      letter-spacing: 1.5px;
+    }
+    .divider {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 14px auto 0;
+    }
+
+    /* ── GOLD BADGE ── */
+    .badge {
+      position: absolute;
+      top: 18px; right: 22px;
+      width: 68px; height: 68px;
+      background: radial-gradient(circle at 35% 35%, #FFD97D, #C89B3C, #8B6000);
+      border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.3);
+      border: 3px solid #E4BC6A;
+    }
+    .badge span { font-size: 9px; font-weight: 700; color: var(--maroon-dk); line-height: 1; }
+    .badge .big { font-size: 18px; font-weight: 900; }
+
+    /* ── CARD ── */
+    .card {
+      width: 100%;
+      max-width: 760px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 24px rgba(74,15,15,0.12);
+      overflow: hidden;
+    }
+    .card-top-bar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--maroon-dk), var(--gold), var(--maroon-dk));
+    }
+    .card-body { padding: 36px 40px 40px; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold-lt), transparent);
+    }
+
+    /* ── GRID ── */
+    .grid { display: grid; gap: 20px 28px; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    @media (max-width: 560px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .card-body { padding: 24px 20px 28px; }
+    }
+
+    /* ── FIELD ── */
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .field label .req { color: var(--gold); margin-left: 2px; }
+    .field input, .field select, .field textarea {
+      border: 1.5px solid #DDD0C8;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--maroon);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(107,26,26,0.08);
+    }
+    .field select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23C89B3C' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+    }
+
+    /* ── MARRIED TOGGLE ── */
+    .married-row { display: flex; gap: 16px; margin-top: 4px; }
+    .married-opt {
+      display: flex; align-items: center; gap: 8px;
+      cursor: pointer; user-select: none;
+    }
+    .married-opt input[type=radio] { display: none; }
+    .married-opt .pill {
+      padding: 8px 24px;
+      border-radius: 8px;
+      border: 2px solid #DDD0C8;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      transition: all 0.2s;
+      background: var(--cream);
+    }
+    .married-opt input[type=radio]:checked + .pill {
+      background: var(--maroon);
+      border-color: var(--maroon);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(107,26,26,0.25);
+    }
+
+    /* ── SEPARATOR ── */
+    .sep { border: none; border-top: 1px solid var(--cream-dk); margin: 28px 0; }
+
+    /* ── SUBMIT ── */
+    .submit-row { display: flex; justify-content: center; margin-top: 32px; }
+    .btn-submit {
+      background: linear-gradient(135deg, var(--maroon), var(--maroon-lt));
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 15px 56px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+      box-shadow: 0 6px 20px rgba(107,26,26,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+    }
+    .btn-submit:hover::before { left: 160%; }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(107,26,26,0.35); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* ── SUCCESS ── */
+    .success-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .success-icon {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--green), #3E7E3E);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 38px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(46,94,46,0.3);
+    }
+    .success-screen h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--maroon-dk);
+      margin-bottom: 10px;
+    }
+    .success-screen p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+    /* ── ERROR MSG ── */
+    .error-msg {
+      text-align: center;
+      color: #c0392b;
+      font-size: 13px;
+      margin-top: 14px;
+      display: none;
+    }
+
+    /* ── FOOTER ── */
+    .footer-note {
+      max-width: 760px;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SPINNER ── */
+    .spinner {
+      display: inline-block; width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle; margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="badge">
+      <span>1g</span>
+      <span class="big">🥇</span>
+      <span>GOLD</span>
+      <span>916</span>
+    </div>
+    <div class="logo-row">
+      <div class="logo-icon">🏡</div>
+      <div class="logo-text">
+        <h1>Swarga Seema<br>Housing Pvt. Ltd.</h1>
+        <span>Quality First</span>
+      </div>
+    </div>
+    <p class="invite-label">A Special Invitation to</p>
+    <h2 class="invite-title">SAI ANURAG COLONY RESIDENTS</h2>
+    <p class="invite-subtitle">Kavya Avenue &nbsp;|&nbsp; Pride Park</p>
+    <div class="divider"></div>
+  </div>
+
+  <!-- CARD -->
+  <div class="card">
+    <div class="card-top-bar"></div>
+    <div class="card-body" id="formWrapper">
+
+      <div class="section-label">Personal Details</div>
+      <form id="couponForm" novalidate>
+
+        <div class="grid grid-2">
+          <div class="field">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" id="name" placeholder="Enter your full name" required />
+          </div>
+          <div class="field">
+            <label>Mobile Number <span class="req">*</span></label>
+            <input type="tel" id="mobile" placeholder="10-digit mobile" maxlength="10" required />
+          </div>
+        </div>
+
+        <div class="grid grid-2" style="margin-top:20px">
+          <div class="field">
+            <label>Address <span class="req">*</span></label>
+            <input type="text" id="address" placeholder="Colony / Area / City" required />
+          </div>
+          <div class="field">
+            <label>E-Mail</label>
+            <input type="email" id="email" placeholder="optional" />
+          </div>
+        </div>
+
+        <div class="grid grid-3" style="margin-top:20px">
+          <div class="field">
+            <label>Age <span class="req">*</span></label>
+            <input type="number" id="age" placeholder="Years" min="18" max="99" required />
+          </div>
+          <div class="field">
+            <label>Occupation <span class="req">*</span></label>
+            <input type="text" id="occupation" placeholder="e.g. Business, Job…" required />
+          </div>
+          <div class="field">
+            <label>Family Members <span class="req">*</span></label>
+            <input type="number" id="members" placeholder="Count" min="1" max="20" required />
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:20px">
+          <label>Married</label>
+          <div class="married-row">
+            <label class="married-opt">
+              <input type="radio" name="married" value="Yes" />
+              <span class="pill">YES</span>
+            </label>
+            <label class="married-opt">
+              <input type="radio" name="married" value="No" />
+              <span class="pill">NO</span>
+            </label>
+          </div>
+        </div>
+
+        <hr class="sep" />
+        <div class="section-label">Visit Slot</div>
+
+        <div class="grid grid-2">
+          <div class="field">
+            <label>Preferred Date <span class="req">*</span></label>
+            <input type="date" id="visitDate" required />
+          </div>
+          <div class="field">
+            <label>Time Slot <span class="req">*</span></label>
+            <select id="timeSlot" required>
+              <option value="" disabled selected>Select a slot</option>
+              <option>09:00 AM – 10:00 AM</option>
+              <option>10:00 AM – 11:00 AM</option>
+              <option>11:00 AM – 12:00 PM</option>
+              <option>12:00 PM – 01:00 PM</option>
+              <option>02:00 PM – 03:00 PM</option>
+              <option>03:00 PM – 04:00 PM</option>
+              <option>04:00 PM – 05:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn-submit" id="submitBtn">Submit Invitation</button>
+        </div>
+        <p class="error-msg" id="errorMsg">Something went wrong. Please try again.</p>
+
+      </form>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">✓</div>
+      <h2>You're Registered!</h2>
+      <p>Thank you for accepting our invitation.<br>
+         Our team will reach out to confirm your visit slot shortly.<br><br>
+         <strong style="color:var(--maroon)">Swarga Seema Housing Pvt. Ltd.</strong>
+      </p>
+    </div>
+  </div>
+
+  <p class="footer-note">© 2026 Swarga Seema Housing Pvt. Ltd. &nbsp;|&nbsp; Hyderabad</p>
+
+  <script>
+    // ── REPLACE WITH YOUR DEPLOYED APPS SCRIPT WEB APP URL ──
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbhrYVtF78luHTVxEwwBRIgX0rFgKYdQ0R0oOD7tN31ReHNuKMgyj_be_uyYjpEGZpnw/exec';
+
+    const form       = document.getElementById('couponForm');
+    const submitBtn  = document.getElementById('submitBtn');
+    const errorMsg   = document.getElementById('errorMsg');
+    const formWrap   = document.getElementById('formWrapper');
+    const successScr = document.getElementById('successScreen');
+
+    // Set minimum date to today
+    document.getElementById('visitDate').min = new Date().toISOString().split('T')[0];
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorMsg.style.display = 'none';
+
+      const married = document.querySelector('input[name="married"]:checked');
+
+      const data = {
+        name:       document.getElementById('name').value.trim(),
+        mobile:     document.getElementById('mobile').value.trim(),
+        address:    document.getElementById('address').value.trim(),
+        email:      document.getElementById('email').value.trim(),
+        age:        document.getElementById('age').value,
+        occupation: document.getElementById('occupation').value.trim(),
+        members:    document.getElementById('members').value,
+        married:    married ? married.value : '—',
+        visitDate:  document.getElementById('visitDate').value,
+        timeSlot:   document.getElementById('timeSlot').value,
+        submittedAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+      };
+
+      // Basic validation
+      const required = ['name','mobile','address','age','occupation','members','visitDate','timeSlot'];
+      for (const k of required) {
+        if (!data[k]) { alert('Please fill all required fields.'); return; }
+      }
+      if (!/^\d{10}$/.test(data.mobile)) { alert('Enter a valid 10-digit mobile number.'); return; }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span>Submitting…';
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        // no-cors → response opaque, assume success
+        formWrap.querySelector('form').style.display = 'none';
+        formWrap.querySelector('.section-label').style.display = 'none';
+        successScr.style.display = 'flex';
+      } catch (err) {
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Submit Invitation';
+      }
+    });
+  </script>
+</body>
+</html>
