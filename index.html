@@ -272,7 +272,7 @@
   </div>
 </header>
 
-<div class="deadline">🗓️ Campaign open until <strong>12th April 2026</strong> — Only 5 slots per time!</div>
+<div class="deadline">🗓️ Campaign open until <strong>12th April 2026</strong> — Only 3 slots per time!</div>
 
 <div class="wrap">
   <div class="card">
@@ -330,7 +330,7 @@
       <!-- Slots -->
       <div class="card-section">
         <div class="section-title"><div class="ico">⏰</div> Choose Time Slot</div>
-        <p class="slots-hint">Each time has 5 slots. 🟢 = Available &nbsp;|&nbsp; 🔴 = Booked. Select a date first.</p>
+        <p class="slots-hint">Each time has 3 slots. 🟢 = Available &nbsp;|&nbsp; 🔴 = Booked. Select a date first.</p>
         <div id="slots-wrap"><div class="slots-placeholder">← Please select a date first</div></div>
         <input type="hidden" id="sel-time">
         <input type="hidden" id="sel-seat">
@@ -423,7 +423,7 @@ function renderSlots(seatsData) {
     <tbody>`;
 
   TIME_SLOTS.forEach(time => {
-    const seats = seatsData[time] || Array(3).fill(false);
+    const seats = (seatsData[time] || Array(3).fill(false)).slice(0, 3);
     html += `<tr><td>${time}</td>`;
     seats.forEach((booked, idx) => {
       const seatNum = idx + 1;
