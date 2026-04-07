@@ -400,8 +400,8 @@ async function loadSlots(ds) {
 
   // Show loading skeleton
   wrap.innerHTML = `<table class="slot-table">
-    <thead><tr><th>Time</th><th>Slot 1</th><th>Slot 2</th><th>Slot 3</th><th>Slot 4</th><th>Slot 5</th></tr></thead>
-    <tbody>${TIME_SLOTS.map(() => `<tr class="loading-row"><td>--:--</td>${[1,2,3,4,5].map(()=>`<td><div class="seat-btn"><span class="seat-icon">⏳</span></div></td>`).join("")}</tr>`).join("")}</tbody>
+    <thead><tr><th>Time</th><th>Slot 1</th><th>Slot 2</th><th>Slot 3</th></tr></thead>
+    <tbody>${TIME_SLOTS.map(() => `<tr class="loading-row"><td>--:--</td>${[1,2,3].map(()=>`<td><div class="seat-btn"><span class="seat-icon">⏳</span></div></td>`).join("")}</tr>`).join("")}</tbody>
   </table>`;
 
   try {
@@ -411,7 +411,7 @@ async function loadSlots(ds) {
   } catch {
     // fallback: all available
     const mock = {};
-    TIME_SLOTS.forEach(t => mock[t] = Array(5).fill(false));
+    TIME_SLOTS.forEach(t => mock[t] = Array(3).fill(false));
     renderSlots(mock);
   }
 }
@@ -419,11 +419,11 @@ async function loadSlots(ds) {
 function renderSlots(seatsData) {
   const wrap = document.getElementById("slots-wrap");
   let html = `<table class="slot-table">
-    <thead><tr><th>Time</th><th>Slot 1</th><th>Slot 2</th><th>Slot 3</th><th>Slot 4</th><th>Slot 5</th></tr></thead>
+    <thead><tr><th>Time</th><th>Slot 1</th><th>Slot 2</th><th>Slot 3</th></tr></thead>
     <tbody>`;
 
   TIME_SLOTS.forEach(time => {
-    const seats = seatsData[time] || Array(5).fill(false);
+    const seats = seatsData[time] || Array(3).fill(false);
     html += `<tr><td>${time}</td>`;
     seats.forEach((booked, idx) => {
       const seatNum = idx + 1;
